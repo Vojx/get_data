@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用angular完成跨域请求</title>
+	<style>
+		h1{
+			color: red;
+		}
+	</style>
+	<script src="js/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="jsonpController">
+	<h1>{{result}}</h1>
+	<button ng-click="fn()">获取数据</button>
+</body>
+</html>
+<script>
+(function(angular){
+  var app = angular.module('myApp',[]);
+  app.controller('jsonpController',['$scope','$http',function($scope,$http){
+    $scope.fn = function(){
+
+    	$http({
+    		url:'http://apis.juhe.cn/oil/region',
+    		method:'jsonp',
+    		params:{
+    			key:'2b0c44707ed7ac314ae88f62bedc8e0b',
+    			format:2,
+    			city:'北京市',
+    			callback:'JSON_CALLBACK'
+    		}
+
+    	}).success(function(data){
+    		console.log(data.result.data);
+    		var result=data.reason;
+    		$scope.result=result;
+
+    	}).error(function(){
+    		console.log("请求出错");
+    	});
+    };
+  }]);
+})(angular);
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>利用angular完成跨域请求</title>
+    <style>
+        h1{
+            color: red;
+        }
+    </style>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="jsonpController">
+    <h1>{{result}}</h1>
+    <button ng-click="fn()">获取数据</button>
+</body>
+</html>
+<script>
+(function(angular){
+  var app = angular.module('myApp',[]);
+  app.controller('jsonpController',['$scope','$http',function($scope,$http){
+    $scope.fn = function(){
+
+        $http({
+            url:'php/ajax_1.php',
+            method:'get',
+
+        }).success(function(data){
+            console.log(data);
+            var phone=data.product.name;
+            $scope.result=phone;
+
+        }).error(function(){
+            console.log("请求出错");
+        });
+    };
+  }]);
+})(angular);
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .data{
+            font-size: 40px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    用json获取数据为：
+    <p class="data"></p>
+    <button id="btn">获取数据</button>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script src='js/itcast.js'></script>
+<script>
+    //原生ajax实现数据请求
+    // window.onload = function () {
+    //     var btn = document.getElementById('btn');
+    //     btn.onclick=function(){
+    //         var xml=new XMLHttpRequest();
+    //         xml.open('get','ajax_1.php');
+    //         xml.send(null);
+
+    //         xml.onreadystatechange=function () {
+    //             if(xml.readyState==4&&xml.status==200){
+    //                 var data=JSON.parse(xml.responseText);
+    //                 console.log(data);
+    //                 document.getElementsByTagName('p')[0].innerHTML=data.product.name;
+    //             }
+    //         }
+    //     }
+    // };
+    
+    
+    //$.ajax()实现数据请求
+    $(function() {
+        $("#btn").on("click", function() {
+            $.ajax({
+                url: 'php/ajax_1.php',
+                //type: 'get',
+                type: 'post',
+
+                success: function(data) {
+                    var my_data = JSON.parse(data);
+                    console.log(my_data);
+                    $(".data").text(my_data.product.name);
+                },
+                error: function() {
+                    $('.data').html("亲，出错了");
+                }
+            });
+        });
+
+    });
+</script>

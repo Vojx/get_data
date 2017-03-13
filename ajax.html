@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax练习</title>
+</head>
+<body>
+	<h1>ajax请求数据</h1>
+	<input type="button" value="发送ajax请求" id="btn">
+</body>
+</html>
+<script>
+	window.onload=function(){
+		document.getElementById("btn").onclick=function(){
+			//1.创建异步请求
+			var ajaxObj=new XMLHttpRequest();
+			//2.设置请求的url参数
+			ajaxObj.open('get','php/ajax_1.php');
+			//3.发送请求
+			ajaxObj.send(null);
+			//4.注册事件
+			ajaxObj.onreadystatechange = function(){
+				if(ajaxObj.readyState==4&&ajaxObj.status==200){
+					//5.获取数据
+					var data=JSON.parse(ajaxObj.responseText);
+					console.log(data);
+					document.getElementsByTagName('h1')[0].innerHTML=data.product.name;
+				};
+			};
+		};
+
+	};
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <script>
+	var txt=document.getElementById("btn");
+	txt.onclick=function(){
+		//发送ajax请求五部要求
+		//1.创建异步请求
+		var xml=new XMLHttpRequest();
+		//2.设置请求的URL等参数
+		//参数1 请求的方法 参数2 请求的URL
+		xml.open('get','ajax_1.php');
+		//3.发送请求
+		xml.send(null);
+		//4.注册事件
+		//onreadystatechange 状态改变就会调用
+		//如果要在 数据完美请求回来的时候才调用
+		xml.onreadystatechange=function(){
+			if(xml.readyState==4&&xml.status==200){
+				console.log('数据已经收到了');
+
+				console.log(xml.responseText);
+				document.querySelector('h1')
+				.innerHTML=xml.responseText;
+			}
+		}
+		//5.在注册的事件中获取返回 的内容 并修改页面的显示
+
+	}
+
+</script> -->

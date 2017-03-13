@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .data{
+            font-size: 40px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p class="data"></p>
+    <button id="btn">点击获取数据</button>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script>
+    $(function () {
+        var arr=[
+            "http://apis.juhe.cn/oil/region?key=2b0c44707ed7ac314ae88f62bedc8e0b&format=2&city=%E5%8C%97%E4%BA%AC%E5%B8%82",
+
+            "http://v.juhe.cn/offset/index?key=04085dca3064813dc25369a9faa98b4b&lat=39.908700982285396&lng=116.3974965092&type=6&dtype=jsonp",
+
+            "http://api.map.baidu.com/telematics/v3/weather?location=上海&output=json&ak=tq0Kt0NFYheTCj5mszast0drkIqqVTNn",
+
+            "http://apis.juhe.cn/cnoil/oil_city?key=911c1d8e4c050c08d48e26f8d929a9e2",
+
+            "http://v.juhe.cn/weather/index?format=2&cityname=%E9%82%AF%E9%83%B8&key=e982f3629ae77eb7345b7e42f29b62ae&dtype=jsonp",
+
+            "http://japi.juhe.cn/comic/category?key=35433811346bd2f63cdef7b71d414b22",
+
+            "http://v.juhe.cn/cdma/?sid=14123&cellid=1099&nid=73&key=d3dca691758dd5a9a1f252422bdc566a&dtype=jsonp",
+
+            "http://apis.juhe.cn/cnoil/oil_city?dtype=&key=911c1d8e4c050c08d48e26f8d929a9e2",
+        ];
+        $("#btn").on('click',function(){
+                $.ajax({
+                    type: "get",
+                    url:arr[0],
+                    dataType: "jsonp",
+
+                    success: function (data) {
+                        console.log(data);
+
+                        console.log(data.result);
+
+                        $(".data").html(data.resultcode+'</br>'+data.reason);
+                    },
+                    error: function () {
+                        $('.data').html("亲，出错了");
+                    }
+            });
+        });
+    })
+</script>
