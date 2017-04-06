@@ -22,12 +22,12 @@
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script src='js/itcast.js'></script>
 <script>
-    //原生ajax实现数据请求
-    // window.onload = function () {
+    //原生ajax实现数据请求window.onload = function () {
     //     var btn = document.getElementById('btn');
     //     btn.onclick=function(){
     //         var xml=new XMLHttpRequest();
-    //         xml.open('get','ajax_1.php');
+    //         xml.open('post','ajax_1.php');
+    //         xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     //         xml.send(null);
 
     //         xml.onreadystatechange=function () {
@@ -39,6 +39,7 @@
     //         }
     //     }
     // };
+    // 
     
     
     //$.ajax()实现数据请求

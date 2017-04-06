@@ -8,7 +8,7 @@
             color: red;
         }
     </style>
-    <script src="js/angular.min.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="jsonpController">
     <h1>{{result}}</h1>
@@ -20,18 +20,18 @@
   var app = angular.module('myApp',[]);
   app.controller('jsonpController',['$scope','$http',function($scope,$http){
     $scope.fn = function(){
-
+        //$http(req).then(function(){...}, function(){...});
         $http({
             url:'http://apis.juhe.cn/oil/region?city=%E5%8C%97%E4%BA%AC%E5%B8%82&format=2&key=2b0c44707ed7ac314ae88f62bedc8e0b',
             method:'get',
 
-        }).success(function(data){
+        }).then(function(data){
             console.log(data);
-            var phone=data.product.name;
-            $scope.result=phone;
-
-        }).error(function(){
-            console.log("请求出错");
+            var reason=data.data.reason;
+            $scope.result=reason;
+        },function(res){
+            console.log(res);
+            console.log('出错了');
         });
     };
   }]);

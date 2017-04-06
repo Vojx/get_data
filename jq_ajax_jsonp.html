@@ -36,10 +36,11 @@
             "http://v.juhe.cn/cdma/?sid=14123&cellid=1099&nid=73&key=d3dca691758dd5a9a1f252422bdc566a&dtype=jsonp",
 
             "http://apis.juhe.cn/cnoil/oil_city?dtype=&key=911c1d8e4c050c08d48e26f8d929a9e2",
+
+            "http://web.juhe.cn:8080/environment/water/river?river=%E9%95%BF%E6%B1%9F%E6%B5%81%E5%9F%9F&key=263f16772e886a6e8b817e02f613af0b"
         ];
         $("#btn").on('click',function(){
                 $.ajax({
-                    type: "get",
                     url:arr[0],
                     dataType: "jsonp",
 

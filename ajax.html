@@ -15,7 +15,10 @@
 			//1.创建异步请求
 			var ajaxObj=new XMLHttpRequest();
 			//2.设置请求的url参数
-			ajaxObj.open('get','php/ajax_1.php');
+			// ajaxObj.open('get','php/ajax_1.php');
+			ajaxObj.open('post','php/ajax_1.php');
+
+			ajaxObj.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			//3.发送请求
 			ajaxObj.send(null);
 			//4.注册事件

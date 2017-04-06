@@ -9,6 +9,7 @@
 		}
 	</style>
 	<script src="js/angular.min.js"></script>
+    
 </head>
 <body ng-app="myApp" ng-controller="jsonpController">
 	<h1>{{result}}</h1>
@@ -20,14 +21,11 @@
   var app = angular.module('myApp',[]);
   app.controller('jsonpController',['$scope','$http',function($scope,$http){
     $scope.fn = function(){
-
+        
     	$http({
-    		url:'http://apis.juhe.cn/oil/region',
+    		url:'http://apis.juhe.cn/oil/region?city=%E5%8C%97%E4%BA%AC%E5%B8%82&format=2&key=2b0c44707ed7ac314ae88f62bedc8e0b',
     		method:'jsonp',
     		params:{
-    			key:'2b0c44707ed7ac314ae88f62bedc8e0b',
-    			format:2,
-    			city:'北京市',
     			callback:'JSON_CALLBACK'
     		}
 

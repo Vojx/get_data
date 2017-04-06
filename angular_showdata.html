@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>angular jsonp获取数据</title>
+	<style>
+		table{
+			border-collapse: collapse;	
+		}
+		td{
+			border: 1px solid #000;
+			width: 200px;
+		}
+	</style>
+</head>
+<body ng-app="myApp" ng-controller="jsonpController">
+	<input type="text" ng-model="text">
+	<table>
+		<tr ng-repeat="item in arr">
+			<td>{{item.areaname}}</td>
+			<td>{{item.fwlsmc}}</td>
+			<td>{{item.discount}}</td>
+			<td>{{item.type}}</td>
+			<td>{{item.id}}</td>
+			<td>{{item.name}}</td>
+			<td>{{item.address}}</td>
+		</tr>
+	</table>
+</body>
+</html>
+<script src="js/angular.min.js"></script>
+
+<script>
+var app = angular.module('myApp', []);
+		app.controller('jsonpController', ['$scope', '$http', function($scope, $http) {
+			$scope.text='';
+			$scope.arr=[];
+
+			$scope.$watch('text',function(){
+				//http://apis.juhe.cn/oil/region?key=2b0c44707ed7ac314ae88f62bedc8e0b&format=2&city=%E5%8C%97%E4%BA%AC%E5%B8%82
+				$http({
+					url: 'http://apis.juhe.cn/oil/region',
+					method: 'jsonp',
+					params: {
+						key:'2b0c44707ed7ac314ae88f62bedc8e0b',
+						format:2,
+						city: $scope.text, 	
+						callback:'JSON_CALLBACK'
+					}
+
+				}).success(function(data) {
+
+					var str=data.result.data;
+					$scope.arr=str;
+					console.log($scope.arr);
+
+				}).error(function() {
+
+					console.log("出错了");
+				});
+			})
+		}]);
+</script>

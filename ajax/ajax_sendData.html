@@ -23,7 +23,7 @@
 		// xxx.php?pass=123
 		// 这只是一个字符串拼接  动态的传递参数
 		// '03.get_senddata.php?userName='+document.querySelector('input').value;
-		ajaxObj.open('get','get_sendData.php?userName=jack');
+		ajaxObj.open('get','http://apis.juhe.cn/oil/region?key=2b0c44707ed7ac314ae88f62bedc8e0b&format=2&city=%E5%8C%97%E4%BA%AC%E5%B8%82');
 
 		// 3.发送请求
 		ajaxObj.send();
@@ -42,10 +42,11 @@
 				console.log('数据完美的回来了');
 
 				// 数据是保存在 异步对象的 属性中
-				console.log(ajaxObj.responseText);
+				var info = JSON.parse(ajaxObj.responseText);
+				console.log(info);
 
 				// 修改页面的显示
-				document.querySelector('h1').innerHTML = ajaxObj.responseText;
+				document.querySelector('h1').innerHTML = info.reason;
 			}
 			
 		}
